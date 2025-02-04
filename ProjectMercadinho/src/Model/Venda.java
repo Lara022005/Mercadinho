@@ -9,10 +9,13 @@ public class Venda {
 	private String desconto;
 	private String precoTotal;
 	
+	// Metodo construtor vazio
 	
 	public Venda() {
 		super();
 	}
+	// Metodo construtor carregado 
+	
 	public Venda(String id, String idCliente, String idFuncionario, String formaPag, String desconto,
 			String precoTotal) {
 		super();
@@ -22,8 +25,9 @@ public class Venda {
 		this.formaPag = formaPag;
 		this.desconto = desconto;
 		this.precoTotal = precoTotal;
-	}
+	}	
 	
+	// Metodo de definir e vizualizar 
 	
 	public String getId() {
 		return id;
