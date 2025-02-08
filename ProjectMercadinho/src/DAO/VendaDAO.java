@@ -7,23 +7,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import ConnectionFactory.ConnectionDatabase;
-import Model.Fornecedor;
+import Model.Venda;
 
-public class FornecedorDAO {
+public class VendaDAO {
 
 	//----------------------------------------------- Criar (Insert)----------------------------------------------
-	public void create(Fornecedor fornecedor) {
+	public void create(Venda venda) {
 
 		Connection con = ConnectionDatabase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
 
-			stmt = con.prepareStatement("insert into Fornecedor values(?, ?, ?, ?)");
-			stmt.setString(1, fornecedor.getNome());
-			stmt.setString(2, fornecedor.getCnpj());
-			stmt.setString(3, fornecedor.getEndereco());
-			stmt.setString(4, fornecedor.getTelefone());
+			stmt = con.prepareStatement("insert into Venda values(?, ?, ?, ?, ?, ?)");
+			stmt.setString(1, venda.getIdCliente());
+			stmt.setString(2, venda.getIdFuncionario());
+			stmt.setString(3, venda.getFormaPag());	
+			stmt.setString(4, venda.getDesconto());	
+			stmt.setString(5, venda.getDataVenda());
+			stmt.setString(6, venda.getPrecoTotal());	
 
 			stmt.executeUpdate();
 			System.out.println("Cadastrado com sucesso!");
@@ -32,29 +34,31 @@ public class FornecedorDAO {
 			// TODO Auto-generated catch block
 			throw new RuntimeException("Erro ao cadastrar!", e);
 		}
-
 	}
+
 	// ---------------------------------------  read ler (SELECT)	--------------------------------------------------------
-	public ArrayList<Fornecedor> read(){
+	public ArrayList<Venda> read(){
 
 		Connection con = ConnectionDatabase.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		ArrayList<Fornecedor> fornecedores = new ArrayList<>();
+		ArrayList<Venda> venda1 = new ArrayList<>();
 
 		try {
-			stmt = con.prepareStatement("select * from Fornecedor");
+			stmt = con.prepareStatement("select * from Venda");
 			rs = stmt.executeQuery();
 
 			while(rs.next()) { // so ira funcionar enquanto estiver linha 				
-				Fornecedor fornecedor = new Fornecedor();
-				fornecedor.setId(rs.getString(1));
-				fornecedor.setNome(rs.getString(2));
-				fornecedor.setCnpj(rs.getString(3));				
-				fornecedor.setEndereco(rs.getString(4));
-				fornecedor.setTelefone(rs.getString(5));
+				Venda venda = new Venda();
+				venda.setId(rs.getString(1));
+				venda.setIdCliente(rs.getString(2));
+				venda.setIdFuncionario(rs.getString(3));				
+				venda.setFormaPag(rs.getString(4));	
+				venda.setDesconto(rs.getString(5));		
+				venda.setDataVenda(rs.getString(6));
+				venda.setPrecoTotal(rs.getString(7));	
 
-				fornecedores.add(fornecedor);
+				venda1.add(venda);
 			}
 
 		} catch (SQLException e) {
@@ -64,26 +68,26 @@ public class FornecedorDAO {
 		finally {
 			ConnectionDatabase.closeConnection(con, stmt, rs);
 		}
-		return fornecedores;
-
-	}
+		return venda1;
+	}	
 
 	//---------------------------------------  update atualizar (update)--------------------------------------- 
-	public void update(Fornecedor fornecedor) {
+	public void update(Venda venda) {
 
 		Connection con = ConnectionDatabase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
 
-			stmt = con.prepareStatement("update Fornecedor set nomeFornecedor = ?, cnpjFornecedor = ?, \r\n"
-					+ "enderecoFornecedor = ?, telefoneFornecedor = ? where idFornecedor = ? or cnpjFornecedor = ?");
-			stmt.setString(1, fornecedor.getNome());
-			stmt.setString(2, fornecedor.getCnpj());		
-			stmt.setString(3, fornecedor.getEndereco());
-			stmt.setString(4, fornecedor.getTelefone());
-			stmt.setString(5, fornecedor.getId());
-			stmt.setString(6, fornecedor.getCnpj());
+			stmt = con.prepareStatement("update Venda set FK_idCliente = ?, FK_idFuncionario = ?, formaPagamento = ?, desconto = ?, dataVenda = ?, precoTotal = ? where idVenda = ?");
+	//		stmt.setString(1, venda.getId());
+			stmt.setString(1, venda.getIdCliente());		
+			stmt.setString(2, venda.getIdFuncionario());
+			stmt.setString(3, venda.getFormaPag());
+			stmt.setString(4, venda.getDesconto());	
+			stmt.setString(5, venda.getDataVenda());
+			stmt.setString(6, venda.getPrecoTotal());
+			stmt.setString(7, venda.getId());
 
 			stmt.executeUpdate();
 			System.out.println("Atualizar com sucesso!");
@@ -100,16 +104,16 @@ public class FornecedorDAO {
 
 	// ---------------------------------------  delete apagar (DELETE) --------------------------------------- 
 
-	public void delete(Fornecedor fornecedor) {
+	public void delete(Venda venda) {
 
 		Connection con = ConnectionDatabase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
 
-			stmt = con.prepareStatement("delete from Fornecedor where idFornecedor = ? or cnpjFornecedor = ?");		
-			stmt.setString(1, fornecedor.getId());
-			stmt.setString(2, fornecedor.getCnpj());
+			stmt = con.prepareStatement("delete from Venda where idVenda = ? or FK_idCliente = ?");		
+			stmt.setString(1, venda.getId());
+			stmt.setString(2, venda.getIdCliente());
 
 			stmt.executeUpdate();
 			System.out.println("Excluido com sucesso!");
@@ -125,29 +129,30 @@ public class FornecedorDAO {
 	}
 
 	// ---------------------------------------  search pesquisar (SELECT + LIKE) --------------------------------------- 
-	public ArrayList<Fornecedor> search(Fornecedor fornecedor2){
+	public ArrayList<Venda> search(Venda venda2){
 
 		Connection con = ConnectionDatabase.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		ArrayList<Fornecedor> fornecedores = new ArrayList<>();
+		ArrayList<Venda> Vendas = new ArrayList<>();
 
 		try {
-			stmt = con.prepareStatement("select * from Fornecedor where cnpjFornecedor like ? or nomeFornecedor like ?");
-			stmt.setString(1, "%"+fornecedor2.getCnpj()+"%");
-			stmt.setString(2, "%"+fornecedor2.getNome()+"%");
-
+			stmt = con.prepareStatement("select * from Venda where idVenda like ? or FK_idCliente like ? ");
+			stmt.setString(1, "%"+venda2.getId()+"%");
+			stmt.setString(2, "%"+venda2.getIdCliente()+"%");
 			rs = stmt.executeQuery();
 
 			while(rs.next()) { // so ira funcionar enquanto estiver linha 				
-				Fornecedor fornecedor = new Fornecedor();
-				fornecedor.setId(rs.getString(1));
-				fornecedor.setNome(rs.getString(2));
-				fornecedor.setCnpj(rs.getString(3));							
-				fornecedor.setEndereco(rs.getString(4));
-				fornecedor.setTelefone(rs.getString(5));
+				Venda venda = new Venda();
+				venda.setId(rs.getString(1));
+				venda.setIdCliente(rs.getString(2));
+				venda.setIdFuncionario(rs.getString(3));				
+				venda.setFormaPag(rs.getString(4));	
+				venda.setDesconto(rs.getString(5));	
+				venda.setDataVenda(rs.getString(6));
+				venda.setPrecoTotal(rs.getString(7));			
 
-				fornecedores.add(fornecedor);
+				Vendas.add(venda);
 			}
 
 		} catch (SQLException e) {
@@ -157,8 +162,13 @@ public class FornecedorDAO {
 		finally {
 			ConnectionDatabase.closeConnection(con, stmt, rs);
 		}
-		return fornecedores;
+		return Vendas;
 
 	}
+
+
+
+
+
 
 }

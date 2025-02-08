@@ -1,22 +1,23 @@
 package Model;
 
 public class Venda {
-	
+
 	private String id;
 	private String idCliente;
 	private String idFuncionario;
 	private String formaPag;
 	private String desconto;
+	private String dataVenda;
 	private String precoTotal;
 	
 	// Metodo construtor vazio
-	
+		
 	public Venda() {
 		super();
 	}
-	// Metodo construtor carregado 
 	
-	public Venda(String id, String idCliente, String idFuncionario, String formaPag, String desconto,
+	// Metodo construtor carregado 
+	public Venda(String id, String idCliente, String idFuncionario, String formaPag, String desconto, String dataVenda,
 			String precoTotal) {
 		super();
 		this.id = id;
@@ -24,8 +25,9 @@ public class Venda {
 		this.idFuncionario = idFuncionario;
 		this.formaPag = formaPag;
 		this.desconto = desconto;
+		this.dataVenda = dataVenda;
 		this.precoTotal = precoTotal;
-	}	
+	}
 	
 	// Metodo de definir e vizualizar 
 	
@@ -59,15 +61,19 @@ public class Venda {
 	public void setDesconto(String desconto) {
 		this.desconto = desconto;
 	}
+	public String getDataVenda() {
+		return dataVenda;
+	}
+	public void setDataVenda(String dataVenda) {
+		this.dataVenda = dataVenda;
+	}
 	public String getPrecoTotal() {
 		return precoTotal;
 	}
 	public void setPrecoTotal(String precoTotal) {
 		this.precoTotal = precoTotal;
 	}
+		
 	
 	
-	
-	
-
 }

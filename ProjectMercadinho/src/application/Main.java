@@ -1,10 +1,11 @@
 package application;
-	
+
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import ConnectionFactory.ConnectionDatabase;
-import DAO.ClienteDAO;
-import Model.Cliente;
+import DAO.ProdutoVendaDAO;
+import Model.ProdutoVenda;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -24,26 +25,46 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
+
+		Connection con = ConnectionDatabase.getConnection();
+		ConnectionDatabase.closeConnection(con);
+
+		//       -------------------        TESTAR READ / SEARCH	---------------------------------	
+
+				ProdutoVenda produtoVenda = new ProdutoVenda();
+				ProdutoVendaDAO produtoVendaDAO = new ProdutoVendaDAO();
+				ArrayList<ProdutoVenda> produtoVendas = new ArrayList<>();
+				produtoVenda.setId("9");
+				produtoVenda.setIdVenda("13");
+				produtoVendas.addAll(produtoVendaDAO.search(produtoVenda));
 		
-			Connection con = ConnectionDatabase.getConnection();
-			ConnectionDatabase.closeConnection(con);
-			
-			// cliente receber usuario
-			Cliente cliente = new Cliente();
-			cliente.setNome("Lara Cristina");
-			cliente.setCpf("02598563519");
-			cliente.setDataNasc("2005-02-26");
-			cliente.setEmail("teste@gmail.com");
-			cliente.setEndereco("araguaina sul");
-			cliente.setTelefone("63992693908");
-			cliente.setGenero("Feminino");
-			
-			// cliente faz ligação com banco
-			ClienteDAO clienteDAO = new ClienteDAO();
-			clienteDAO.create(cliente);
+				for(int i = 0; i < produtoVendas.size(); i ++) {
+					produtoVenda = produtoVendas.get(i);
+					System.out.println("");
+					System.out.print(produtoVenda.getId() + " | ");
+					System.out.print(produtoVenda.getIdVenda() + " | ");
+					System.out.print(produtoVenda.getIdProduto() + " | ");
+					System.out.print(produtoVenda.getQuantidade() + " | ");
+					
+
+}
+
+	//  -----------------------      TESTAR CREATE / UPDATE / DELETE    --------------------------------------     
 		
-		launch(args);
-	}
+//			ProdutoVenda produtoVenda = new ProdutoVenda();
+//			produtoVenda.setIdVenda("13");
+//			produtoVenda.setIdProduto("45");	
+//			produtoVenda.setQuantidade("10");		
+//			produtoVenda.setId("9");
+		
+			//		 cliente faz ligação com banco
+		
+//			ProdutoVendaDAO ProdutovendaDAO = new ProdutoVendaDAO();
+//			ProdutovendaDAO.create(produtoVenda);
+		
+			launch(args);
+		}
+
 }
