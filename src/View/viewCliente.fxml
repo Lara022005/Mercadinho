@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="572.0" prefWidth="874.0" style="-fx-border-radius: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.controllerCliente">
+   <children>
+      <ImageView fitHeight="714.0" fitWidth="805.0" layoutX="85.0" layoutY="-141.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/papelParede.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="-4.0" prefHeight="573.0" prefWidth="234.0" style="-fx-background-color: C31B0F;">
+         <children>
+            <Pane layoutX="21.0" layoutY="231.0" prefHeight="238.0" prefWidth="193.0" style="-fx-background-color: #A51409; -fx-background-radius: 5;">
+               <children>
+                  <Button fx:id="btFornecedor" alignment="BOTTOM_LEFT" layoutX="28.0" layoutY="195.0" mnemonicParsing="false" onAction="#telaFornecedor" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #A51409;" text="FORNECEDORES" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btMain" alignment="BOTTOM_LEFT" layoutX="28.0" layoutY="18.0" mnemonicParsing="false" onAction="#telaMain" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #A51409;" text="MENU PRINCIPAL" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btFuncionario" alignment="BOTTOM_LEFT" layoutX="28.0" layoutY="150.0" mnemonicParsing="false" onAction="#telaFuncionario" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #A51409;" text="FUNCIONARIOS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Line endX="-99.99998474121094" endY="209.19998168945312" layoutX="113.0" layoutY="14.0" startX="-100.0" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="4.0" />
+                  <Button fx:id="btProduto" alignment="BOTTOM_LEFT" layoutX="27.0" layoutY="103.0" mnemonicParsing="false" onAction="#telaProduto" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #A51409;" text="PRODUTOS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btCliente" alignment="BOTTOM_LEFT" layoutX="27.0" layoutY="58.0" mnemonicParsing="false" onAction="#telaCliente" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #B02732; -fx-border-color: ffffff; -fx-border-radius: 5; -fx-background-radius: 5;" text="CLIENTES" textFill="#fffefe">
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="33.22" offsetX="5.0" offsetY="5.0" radius="15.98" width="32.7">
+                           <color>
+                              <Color red="0.13684210181236267" green="0.0385185182094574" blue="0.0385185182094574" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <ImageView fitHeight="85.0" fitWidth="96.0" layoutX="75.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/fotoLogin.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btRegistrarVenda" layoutX="41.0" layoutY="178.0" mnemonicParsing="false" onAction="#telaVenda" prefHeight="25.0" prefWidth="152.0" style="-fx-border-width: 1; -fx-border-color: ffffff; -fx-border-radius: 5; -fx-background-color: linear-gradient(to right, #F65351 20%, #ED7C7C 60%); -fx-border-radius: 5;" text="REGISTRAR VENDA" />
+            <Button fx:id="btSair" alignment="BOTTOM_RIGHT" graphicTextGap="9.0" layoutX="67.0" layoutY="514.0" mnemonicParsing="false" onAction="#actionSair" prefHeight="34.0" prefWidth="83.0" style="-fx-background-color: C31B0F;" text="Sair" textFill="#fffcfc">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/btSair.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Line endX="20.400001525878906" layoutX="141.0" layoutY="144.0" startX="-67.80001068115234" stroke="#fff7f7" strokeWidth="2.0" />
+            <Label fx:id="txtUser" alignment="CENTER" layoutX="36.0" layoutY="118.0" prefHeight="21.0" prefWidth="163.0" text="USUARIO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="tableClientes" layoutX="243.0" layoutY="200.0" prefHeight="366.0" prefWidth="631.0">
+         <columns>
+            <TableColumn fx:id="columnIndice" prefWidth="32.0" />
+            <TableColumn fx:id="columnNome" prefWidth="116.79998779296875" text="Nome" />
+            <TableColumn fx:id="columnCPF" prefWidth="79.20001220703125" text="CPF" />
+            <TableColumn fx:id="columnGenero" prefWidth="51.199981689453125" text="Genero" />
+            <TableColumn fx:id="columnDataNasc" prefWidth="114.39996337890625" text="Data de Nasc." />
+            <TableColumn fx:id="columnEndereco" prefWidth="91.2000732421875" text="Endereço" />
+            <TableColumn fx:id="columnTelefone" prefWidth="72.0001220703125" text="Telefone" />
+            <TableColumn fx:id="columnEmail" prefWidth="71.20000000000005" text="Email" />
+         </columns>
+      </TableView>
+      <Button fx:id="btCadastrar" alignment="CENTER" graphicTextGap="12.0" layoutX="302.0" layoutY="132.0" mnemonicParsing="false" onAction="#actionCadastrar" prefHeight="30.0" prefWidth="144.0" style="-fx-background-color: C31B0F; -fx-border-radius: 5; -fx-background-radius: 5;" text="Cadastrar" textFill="#fffefe">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="32.74" offsetX="5.0" offsetY="5.0" radius="15.86" width="32.7">
+               <color>
+                  <Color red="0.821052610874176" green="0.6444756388664246" blue="0.6173099279403687" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/cadastro.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btEditar" alignment="CENTER" graphicTextGap="13.0" layoutX="475.0" layoutY="132.0" mnemonicParsing="false" onAction="#actionEditar" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: C31B0F; -fx-border-radius: 5; -fx-background-radius: 5;" text="Editar" textFill="#fffefe">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="32.74" offsetX="5.0" offsetY="5.0" radius="15.86" width="32.7">
+               <color>
+                  <Color red="0.821052610874176" green="0.6444756388664246" blue="0.6173099279403687" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/editar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btExcluir" alignment="CENTER" graphicTextGap="13.0" layoutX="649.0" layoutY="132.0" mnemonicParsing="false" onAction="#actionExcluir" prefHeight="31.0" prefWidth="138.0" style="-fx-background-color: C31B0F; -fx-border-radius: 5; -fx-background-radius: 5;" text="Excluir" textFill="#fffefe">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="32.74" offsetX="5.0" offsetY="5.0" radius="15.86" width="32.7">
+               <color>
+                  <Color red="0.821052610874176" green="0.6444756388664246" blue="0.6173099279403687" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btPesquisar" alignment="CENTER" graphicTextGap="12.0" layoutX="650.0" layoutY="83.0" mnemonicParsing="false" onAction="#actionPesquisar" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: C31B0F; -fx-border-radius: 5; -fx-background-radius: 5;" text="Pesquisar" textFill="#fffefe">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="32.74" offsetX="5.0" offsetY="5.0" radius="15.86" width="32.7">
+               <color>
+                  <Color red="0.8842105269432068" green="0.7204678654670715" blue="0.7204678654670715" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/pesquisa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="txtPesquisar" layoutX="301.0" layoutY="84.0" prefHeight="30.0" prefWidth="322.0" promptText="Digite seu nome ou CPF e aperte Pesquisar" style="-fx-background-radius: 5; -fx-border-color: #610B05; -fx-border-radius: 5;" />
+      <Text fill="#232121" layoutX="380.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RELATORIO DE CLIENTES" textAlignment="CENTER" wrappingWidth="343.73675537109364">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Line endX="396.4000244140625" layoutX="466.0" layoutY="44.0" startX="-209.19998168945312" stroke="#a51409" strokeWidth="2.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="547.0" prefWidth="804.0" style="-fx-border-radius: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.controllerMain">
+   <children>
+      <ImageView fitHeight="717.0" fitWidth="826.0" layoutX="2.0" layoutY="-167.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/papelParede.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="249.0" layoutY="36.0" prefHeight="138.0" prefWidth="530.0" style="-fx-border-color: #610B05; -fx-border-radius: 5;">
+         <children>
+            <Button fx:id="btRelatorioVenda" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="84.0" mnemonicParsing="false" onAction="#telaRelatorioVenda" prefHeight="30.0" prefWidth="182.0" style="-fx-background-color: #A51409; -fx-background-radius: 5;" text="Abrir relatório venda" textFill="#fff9f9">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/pesquisa.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="-4.0" prefHeight="553.0" prefWidth="234.0" style="-fx-background-color: C31B0F;">
+         <children>
+            <Pane layoutX="21.0" layoutY="231.0" prefHeight="238.0" prefWidth="193.0" style="-fx-background-color: #A51409; -fx-background-radius: 5;">
+               <children>
+                  <Button fx:id="btFornecedor" alignment="BOTTOM_LEFT" layoutX="28.0" layoutY="195.0" mnemonicParsing="false" onAction="#telaFornecedor" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #A51409;" text="FORNECEDORES" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btCliente" alignment="BOTTOM_LEFT" layoutX="28.0" layoutY="61.0" mnemonicParsing="false" onAction="#telaCliente" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #A51409;" text="CLIENTES" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btFuncionario" alignment="BOTTOM_LEFT" layoutX="28.0" layoutY="150.0" mnemonicParsing="false" onAction="#telaFuncionario" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #A51409;" text="FUNCIONARIOS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Line endX="-99.99998474121094" endY="209.19998168945312" layoutX="113.0" layoutY="14.0" startX="-100.0" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="4.0" />
+                  <Button fx:id="btMain" layoutX="27.0" layoutY="11.0" mnemonicParsing="false" onAction="#telaMain" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #B02732; -fx-border-color: ffffff; -fx-border-radius: 5; -fx-background-radius: 5;" text="MENU PRINCIPAL" textFill="#fffefe">
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="33.22" offsetX="5.0" offsetY="5.0" radius="15.98" width="32.7">
+                           <color>
+                              <Color red="0.13684210181236267" green="0.0385185182094574" blue="0.0385185182094574" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btProduto" alignment="BOTTOM_LEFT" layoutX="27.0" layoutY="103.0" mnemonicParsing="false" onAction="#telaProduto" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #A51409;" text="PRODUTOS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <ImageView fitHeight="85.0" fitWidth="96.0" layoutX="75.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/fotoLogin.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btRegistrarVenda" layoutX="41.0" layoutY="178.0" mnemonicParsing="false" onAction="#telaVenda" prefHeight="25.0" prefWidth="152.0" style="-fx-border-width: 1; -fx-border-color: ffffff; -fx-border-radius: 5; -fx-background-color: linear-gradient(to right, #F65351 20%, #ED7C7C 60%); -fx-border-radius: 5;" text="REGISTRAR VENDA" />
+            <Button fx:id="btSair" alignment="BOTTOM_RIGHT" layoutX="66.0" layoutY="490.0" mnemonicParsing="false" onAction="#actionSair" prefHeight="34.0" prefWidth="83.0" style="-fx-background-color: C31B0F;" text="Sair" textFill="#fffcfc">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/btSair.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Line endX="20.400001525878906" layoutX="141.0" layoutY="144.0" startX="-67.80001068115234" stroke="#fff7f7" strokeWidth="2.0" />
+            <Label fx:id="txtUser" alignment="CENTER" layoutX="36.0" layoutY="118.0" prefHeight="21.0" prefWidth="163.0" text="USUARIO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Text layoutX="399.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SEJA BEM VINDO " textAlignment="CENTER" wrappingWidth="207.73675537109375">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tableProdutosAVencer" layoutX="251.0" layoutY="215.0" prefHeight="147.0" prefWidth="530.0">
+        <columns>
+          <TableColumn fx:id="columnIndiceAVencer" prefWidth="55.99993896484375" text="Indice" />
+          <TableColumn fx:id="columnProdutoAVencer" prefWidth="108.79998779296875" text="Produto" />
+            <TableColumn fx:id="columnCodBarraAVencer" prefWidth="100.00003051757812" text="Codigo de barra" />
+            <TableColumn fx:id="columnDataFabAVencer" prefWidth="87.199951171875" text="Data de Fab." />
+            <TableColumn fx:id="columnDataValAVencer" prefWidth="111.20001220703125" text="Data de Validade" />
+            <TableColumn fx:id="columnEstoqueAVencer" prefWidth="73.5999755859375" text="estoque" />
+        </columns>
+      </TableView>
+      <Text layoutX="286.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRODUTOS COM DATA DE VENCIMENTO PRÓXIMA" textAlignment="CENTER" wrappingWidth="453.33673095703114">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Pane layoutX="259.0" layoutY="56.0" prefHeight="47.0" prefWidth="514.0" style="-fx-background-color: #A51409; -fx-background-radius: 5;">
+         <children>
+            <Label fx:id="txtTotalVendido" alignment="CENTER" layoutX="345.0" layoutY="10.0" prefHeight="27.0" prefWidth="163.0" text="R$ 00,00" textAlignment="CENTER" textFill="#fffbfb">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Text fill="WHITE" layoutX="12.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SEU TOTAL DE VENDAS ESSE MÊS: " textAlignment="CENTER" wrappingWidth="343.73675537109375">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text layoutX="330.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRODUTOS COM ESTOQUE BAIXO" textAlignment="CENTER" wrappingWidth="343.73675537109364">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tableProdutos" layoutX="249.0" layoutY="397.0" prefHeight="147.0" prefWidth="530.0">
+         <columns>
+            <TableColumn fx:id="columnIndice" prefWidth="55.99993896484375" text="Indice" />
+            <TableColumn fx:id="columnProduto" prefWidth="108.79998779296875" text="Produto" />
+            <TableColumn fx:id="columnCodBarra" prefWidth="100.00003051757812" text="Codigo de barra" />
+            <TableColumn fx:id="columnDataFab" prefWidth="87.199951171875" text="Data de Fab." />
+            <TableColumn fx:id="columnDataVal" prefWidth="112.7999267578125" text="Data de Validade" />
+            <TableColumn fx:id="columnEstoque" prefWidth="71.2000732421875" text="estoque" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
