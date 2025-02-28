@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 import DAO.FuncionarioDAO;
 import DAO.ProdutoDAO;
 import Model.Produto;
