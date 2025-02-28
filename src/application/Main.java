@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -73,6 +74,21 @@ public class Main extends Application {
 		
 	}
 	
+	private static Stage cadCliente;
+	public static void TelaCadastroCliente() throws IOException {
+		FXMLLoader fxmlCadastroCliente = new FXMLLoader();
+		fxmlCadastroCliente.setLocation(Main.class.getResource("/View/viewCadastrarCliente.fxml"));
+		Parent cadastroCliente = fxmlCadastroCliente.load();
+		Scene scene2 = new Scene(cadastroCliente);
+		
+		cadCliente = new Stage();
+		cadCliente.setTitle("Cadastro/Edição de Cliente - Mercadinho do João");
+		cadCliente.initModality(Modality.WINDOW_MODAL);
+		cadCliente.setScene(scene2);
+		cadCliente.centerOnScreen();
+		cadCliente.showAndWait();
+		
+	}
 	
 	public static void main(String[] args) {
 

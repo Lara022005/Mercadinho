@@ -60,7 +60,6 @@ public class ClienteDAO {
 			while(rs.next()) { // so ira funcionar enquanto estiver linha 				
 				Cliente cliente = new Cliente();
 				cliente.setId("" + i);
-				cliente.setId(rs.getString(1));
 				cliente.setNome(rs.getString(2));
 				cliente.setCpf(rs.getString(3));
 				cliente.setEmail(rs.getString(4));
@@ -153,12 +152,12 @@ public class ClienteDAO {
 			stmt = con.prepareStatement("select * from Cliente where cpfCliente like ? or nomeCliente like ?");
 			stmt.setString(1, "%"+cliente1.getCpf()+"%");
 			stmt.setString(2, "%"+cliente1.getNome()+"%");
-
+			int i = 1;
 			rs = stmt.executeQuery();
 
 			while(rs.next()) { // so ira funcionar enquanto estiver linha 				
 				Cliente cliente = new Cliente();
-				cliente.setId(rs.getString(1));
+				cliente.setId("" + i);				
 				cliente.setNome(rs.getString(2));
 				cliente.setCpf(rs.getString(3));
 				cliente.setEmail(rs.getString(4));
@@ -168,6 +167,7 @@ public class ClienteDAO {
 				cliente.setTelefone(rs.getString(8));
 
 				clientes.add(cliente);
+				i++;
 			}
 
 		} catch (SQLException e) {

@@ -1,0 +1,115 @@
+package Controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import DAO.ClienteDAO;
+import Model.Cliente;
+import Util.Alerts;
+import Util.cpfValidator;
+import Util.emailValidator;
+import Util.telefoneValidator;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+public class controllerCadastrarCliente implements Initializable {
+
+    @FXML
+    private Button btCancelar;
+
+    @FXML
+    private Button btCadastrar;
+
+    @FXML
+    private Button btVoltar;
+
+    @FXML
+    private ChoiceBox<String> choiceGenero;
+
+    @FXML
+    private DatePicker dpDataNasc;
+
+    @FXML
+    private TextField txtCPF;
+
+    @FXML
+    private TextField txtEmail;
+
+    @FXML
+    private TextField txtEndereco;
+
+    @FXML
+    private TextField txtNome;
+
+    @FXML
+    private TextField txtTelefone;
+
+    @FXML
+    void actionCancelar(ActionEvent event) {
+    	txtNome.setText("");
+    	txtCPF.setText("");
+    	txtEmail.setText("");
+    	txtEndereco.setText("");
+    	txtTelefone.setText("");
+    	dpDataNasc.setValue(null);
+    	choiceGenero.setValue(null);
+    	
+    	Stage stage = (Stage) btCancelar.getScene().getWindow();
+    	stage.close();
+    	    	
+    }
+
+    @FXML
+    void actionCadastrar(ActionEvent event) {
+    	Cliente cliente = new Cliente();
+    	ClienteDAO clienteDAO = new ClienteDAO();
+    	
+    	if(txtCPF.getText() == "" || cpfValidator.validarCPF(txtCPF.getText()) == false) {
+    		Alerts.showAlert("Erro!", "CPF inválido"," Verifique o CPF e tente novamente", AlertType.ERROR);  
+    		
+    	} else if (txtEmail.getText() != "" && emailValidator.validarEmail(txtEmail.getText()) == false) {   		
+    		Alerts.showAlert("Erro!", "E-mail inválido"," Verifique o e-mail e tente novamente", AlertType.ERROR); 
+    		
+    	} else if (telefoneValidator.validarTelefone(txtTelefone.getText()) == false) {   		
+    		Alerts.showAlert("Erro!", "Telefone inválido"," Verifique o telefone e tente novamente", AlertType.ERROR); 
+    		   		
+    	} else if(txtNome.getText() == "" || choiceGenero.getValue() == null ||dpDataNasc.getValue() == null || txtEndereco.getText() == "") {   		
+    		Alerts.showAlert("Erro!", "Informações obrigatorias não foram preenchidas"," Verifique e tente novamente", AlertType.ERROR);
+    		
+    	} else {
+    		cliente.setNome(txtNome.getText());
+    		cliente.setCpf(txtCPF.getText());
+    		cliente.setEmail(txtEmail.getText());
+    		cliente.setEndereco(txtEndereco.getText());
+    		cliente.setTelefone(txtTelefone.getText());
+    		cliente.setDataNasc(dpDataNasc.getValue().toString());
+    		cliente.setGenero(choiceGenero.getValue());
+    		
+    		clienteDAO.create(cliente);
+    		
+    		Alerts.showAlert("Erro!", "Cadastrado com sucesso", "Seja bem vindo", AlertType.CONFIRMATION);
+    	}   	
+    }
+
+    @FXML
+    void actionVoltar(ActionEvent event) {
+
+    }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		choiceGenero.getItems().add("Masculino");
+		choiceGenero.getItems().add("Feminino");
+		
+		
+	}
+
+}

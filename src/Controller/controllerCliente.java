@@ -127,8 +127,8 @@ public class controllerCliente implements Initializable{
 	}
 
 	@FXML
-	void actionCadastrar(ActionEvent event) {
-
+	void actionCadastrar(ActionEvent event) throws IOException {		
+		Main.TelaCadastroCliente();
 	}
 
 	@FXML
