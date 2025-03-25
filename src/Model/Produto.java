@@ -14,8 +14,9 @@ public class Produto {
 	private String uniMedida;
 	private String precoUni;
 	private String estoque;
+	private String precoTotal;
 	
-	
+				
 	public Produto() {
 		super();
 	}
@@ -34,6 +35,13 @@ public class Produto {
 		this.uniMedida = uniMedida;
 		this.precoUni = precoUni;
 		this.estoque = estoque;
+	}
+	
+	public String getPrecoTotal() {
+		return precoTotal;
+	}
+	public void setPrecoTotal(String precoTotal) {
+		this.precoTotal = precoTotal;
 	}
 	public String getId() {
 		return id;

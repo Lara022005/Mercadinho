@@ -82,13 +82,28 @@ public class Main extends Application {
 		Scene scene2 = new Scene(cadastroCliente);
 		
 		cadCliente = new Stage();
-		cadCliente.setTitle("Cadastro/Edição de Cliente - Mercadinho do João");
+		cadCliente.setTitle("Cadastro/Edição de Cliente");
 		cadCliente.initModality(Modality.WINDOW_MODAL);
 		cadCliente.setScene(scene2);
 		cadCliente.centerOnScreen();
 		cadCliente.showAndWait();
 		
 	}
+	
+	private static Stage venda;
+	   public static void TelaRegistroVenda() throws IOException {
+	       FXMLLoader fxmlRegistrarVenda = new FXMLLoader();
+	       fxmlRegistrarVenda.setLocation(Main.class.getResource("/View/viewRegistroVenda.fxml"));
+	       Parent registrarVenda = fxmlRegistrarVenda.load();
+	       Scene scene2 = new Scene(registrarVenda);
+	       
+	       venda = new Stage();
+	       venda.setTitle("Registrar venda - Mercado do João");
+	       venda.initModality(Modality.WINDOW_MODAL);
+	       venda.setScene(scene2);    
+	       venda.centerOnScreen();    
+	       venda.showAndWait();    
+	   }
 	
 	public static void main(String[] args) {
 

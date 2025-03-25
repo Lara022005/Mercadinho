@@ -1,6 +1,7 @@
 package Controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
@@ -61,6 +62,8 @@ public class controllerCadastrarCliente implements Initializable {
     	dpDataNasc.setValue(null);
     	choiceGenero.setValue(null);
     	
+    	controllerCliente.clienteEditar = null;
+    	
     	Stage stage = (Stage) btCancelar.getScene().getWindow();
     	stage.close();
     	    	
@@ -92,24 +95,40 @@ public class controllerCadastrarCliente implements Initializable {
     		cliente.setDataNasc(dpDataNasc.getValue().toString());
     		cliente.setGenero(choiceGenero.getValue());
     		
-    		clienteDAO.create(cliente);
-    		
-    		Alerts.showAlert("Erro!", "Cadastrado com sucesso", "Seja bem vindo", AlertType.CONFIRMATION);
+    	if(controllerCliente.clienteEditar == null) {
+    		clienteDAO.create(cliente);   		
+    		Alerts.showAlert("Sucesso!", "Cliente cadastrado", "Seja bem vindo", AlertType.INFORMATION);
+    		Stage stage = (Stage) btCancelar.getScene().getWindow();
+        	stage.close();
+    	}else if(controllerCliente.clienteEditar != null) {
+    		clienteDAO.update(cliente);   		
+    		Alerts.showAlert("Sucesso!", "Cliente editado", "O cliente foi editado com sucesso", AlertType.INFORMATION);    
+    		Stage stage = (Stage) btCancelar.getScene().getWindow();
+        	stage.close();
+    	}
+    	
     	}   	
     }
-
-    @FXML
-    void actionVoltar(ActionEvent event) {
-
-    }
-
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		choiceGenero.getItems().add("Masculino");
 		choiceGenero.getItems().add("Feminino");
 		
-		
+		if(controllerCliente.clienteEditar != null) {
+			btCadastrar.setText("Salvar");
+			Cliente clienteEditar = new Cliente();
+			clienteEditar = controllerCliente.clienteEditar;
+			txtCPF.setText(clienteEditar.getCpf());
+			txtNome.setText(clienteEditar.getNome());
+			txtEndereco.setText(clienteEditar.getEndereco());
+			txtTelefone.setText(clienteEditar.getTelefone());
+			txtEmail.setText(clienteEditar.getEmail());
+			choiceGenero.setValue(clienteEditar.getGenero());
+			LocalDate dateNasc = LocalDate.parse(clienteEditar.getDataNasc());
+			dpDataNasc.setValue(dateNasc);
+		}
 	}
 
 }

@@ -135,8 +135,8 @@ public class controllerMain implements Initializable {
     }
 
     @FXML
-    void telaVenda(ActionEvent event) {
-
+    void telaVenda(ActionEvent event) throws IOException {
+    	Main.TelaRegistroVenda();
     }
     
     
@@ -147,7 +147,7 @@ public class controllerMain implements Initializable {
 		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 		String totalVendido;
 		totalVendido = funcionarioDAO.getTotalVendido(controllerLogin.funcionario.getId());		
-		
+				
 		double valorTotal = Double.parseDouble(totalVendido);
 		totalVendido = String.format("%.2f", valorTotal);
 			

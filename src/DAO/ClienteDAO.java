@@ -92,16 +92,15 @@ public class ClienteDAO {
 		try {
 
 			stmt = con.prepareStatement("update Cliente set nomeCliente = ?, cpfCliente = ?, emailCliente = ?, generoCliente = ?, dataNascimento = ?, \r\n"
-					+ "enderecoCliente = ?, telefoneCliente = ? where idCliente = ? or cpfCliente = ?");
+					+ "enderecoCliente = ?, telefoneCliente = ? where cpfCliente = ?");
 			stmt.setString(1, cliente.getNome());
 			stmt.setString(2, cliente.getCpf());
 			stmt.setString(3, cliente.getEmail());
 			stmt.setString(4, cliente.getGenero());
 			stmt.setString(5, cliente.getDataNasc());
 			stmt.setString(6, cliente.getEndereco());
-			stmt.setString(7, cliente.getTelefone());
-			stmt.setString(8, cliente.getId());
-			stmt.setString(9, cliente.getCpf());
+			stmt.setString(7, cliente.getTelefone());		
+			stmt.setString(8, cliente.getCpf());
 
 			stmt.executeUpdate();
 			System.out.println("Atualizar com sucesso!");
@@ -152,12 +151,11 @@ public class ClienteDAO {
 			stmt = con.prepareStatement("select * from Cliente where cpfCliente like ? or nomeCliente like ?");
 			stmt.setString(1, "%"+cliente1.getCpf()+"%");
 			stmt.setString(2, "%"+cliente1.getNome()+"%");
-			int i = 1;
 			rs = stmt.executeQuery();
 
 			while(rs.next()) { // so ira funcionar enquanto estiver linha 				
 				Cliente cliente = new Cliente();
-				cliente.setId("" + i);				
+				cliente.setId(rs.getString(1));				
 				cliente.setNome(rs.getString(2));
 				cliente.setCpf(rs.getString(3));
 				cliente.setEmail(rs.getString(4));
@@ -167,7 +165,7 @@ public class ClienteDAO {
 				cliente.setTelefone(rs.getString(8));
 
 				clientes.add(cliente);
-				i++;
+				
 			}
 
 		} catch (SQLException e) {
@@ -178,8 +176,30 @@ public class ClienteDAO {
 			ConnectionDatabase.closeConnection(con, stmt, rs);
 		}
 		return clientes;
-
 	}
+	
+	public ArrayList<String> readClienteByNome() {
+	       Connection con = ConnectionDatabase.getConnection();
+	       PreparedStatement stmt = null;
+	       ResultSet rs = null;
+	       ArrayList<String> clientes = new ArrayList<>();
+
+	       try {
+	           stmt = con.prepareStatement("SELECT nomeCliente FROM Cliente");
+	           rs = stmt.executeQuery();
+
+	           while (rs.next()) {
+	               String nome;
+	               nome = rs.getString(1);
+	               clientes.add(nome);
+	           }
+	       } catch (SQLException e) {
+	           throw new RuntimeException("Erro ao ler os clientes!", e);
+	       } finally {
+	           ConnectionDatabase.closeConnection(con, stmt, rs);
+	       }
+	       return clientes;
+	   }
 
 
 }

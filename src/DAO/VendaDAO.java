@@ -19,13 +19,12 @@ public class VendaDAO {
 
 		try {
 
-			stmt = con.prepareStatement("insert into Venda values(?, ?, ?, ?, ?, ?)");
+			stmt = con.prepareStatement("insert into Venda values(?, ?, ?, ?, GETDATE(), ?)");
 			stmt.setString(1, venda.getIdCliente());
 			stmt.setString(2, venda.getIdFuncionario());
 			stmt.setString(3, venda.getFormaPag());	
 			stmt.setString(4, venda.getDesconto());	
-			stmt.setString(5, venda.getDataVenda());
-			stmt.setString(6, venda.getPrecoTotal());	
+			stmt.setString(5, venda.getPrecoTotal());	
 
 			stmt.executeUpdate();
 			System.out.println("Cadastrado com sucesso!");
@@ -165,10 +164,30 @@ public class VendaDAO {
 		return Vendas;
 
 	}
+	public String readID(){
 
+		Connection con = ConnectionDatabase.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;	
+		String idVenda = null;
 
+		try {
+			stmt = con.prepareStatement("select * from Venda");			
+			rs = stmt.executeQuery();
 
+			while(rs.next()) { 								
+				idVenda = rs.getString(1);			
+			}
 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("Erro ao ler informações!", e);
+		}
+		finally {
+			ConnectionDatabase.closeConnection(con, stmt, rs);
+		}
+		return idVenda;
 
+	}
 
 }

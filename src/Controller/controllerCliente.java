@@ -127,13 +127,24 @@ public class controllerCliente implements Initializable{
 	}
 
 	@FXML
-	void actionCadastrar(ActionEvent event) throws IOException {		
+	void actionCadastrar(ActionEvent event) throws IOException {	
+		clienteEditar = null;
 		Main.TelaCadastroCliente();
+		CarregarTableCliente();
 	}
-
+	
+	public static Cliente clienteEditar = new Cliente();
 	@FXML
-	void actionEditar(ActionEvent event) {
-
+	void actionEditar(ActionEvent event) throws IOException {
+		int i = tableClientes.getSelectionModel().getSelectedIndex(); // valor clicado na tela
+		if(i == -1) {
+			Alerts.showAlert("ERRO!", "Falha ao tentar editar", "Selecione um cliente para editar", AlertType.ERROR);   		
+		}else {
+			clienteEditar = tableClientes.getItems().get(i);
+			Main.TelaCadastroCliente();			
+		}
+		CarregarTableCliente();
+		
 	}
 
 	@FXML
@@ -172,10 +183,13 @@ public class controllerCliente implements Initializable{
 		// TODO Auto-generated method stub
 		CarregarTableCliente();
 		txtUser.setText(controllerLogin.funcionario.getNome());
+		
+		clienteEditar = null;
 	}
 
 	private ObservableList<Cliente> ArrayClientes;
-
+	
+	@FXML
 	public void CarregarTableCliente() {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		ArrayClientes = FXCollections.observableArrayList(clienteDAO.read());
