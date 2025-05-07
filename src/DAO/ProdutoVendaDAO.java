@@ -6,17 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import ConnectionFactory.ConnectionDatabase;
+import ConnectionFactory.ConnectionDataBase;
 import Model.ProdutoVenda;
 
 
-//  testar 
+
 public class ProdutoVendaDAO {
 
 	//----------------------------------------------- Criar (Insert)----------------------------------------------
 	public void create(ProdutoVenda produtoVenda) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -39,7 +39,7 @@ public class ProdutoVendaDAO {
 	// ---------------------------------------  read ler (SELECT)	--------------------------------------------------------
 	public ArrayList<ProdutoVenda> read(){
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		ArrayList<ProdutoVenda> produtoVenda1 = new ArrayList<>();
@@ -63,7 +63,7 @@ public class ProdutoVendaDAO {
 			throw new RuntimeException("Erro ao ler informações!", e);
 		}
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt, rs);
+			ConnectionDataBase.closeConnection(con, stmt, rs);
 		}
 		return produtoVenda1;
 
@@ -72,7 +72,7 @@ public class ProdutoVendaDAO {
 	//---------------------------------------  update atualizar (update)--------------------------------------- 
 	public void update(ProdutoVenda produtoVenda) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -93,16 +93,15 @@ public class ProdutoVendaDAO {
 			throw new RuntimeException("Erro ao atualizar!", e);
 		} 
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt);
+			ConnectionDataBase.closeConnection(con, stmt);
 		}
-
 	}
 
 	// ---------------------------------------  delete apagar (DELETE) --------------------------------------- 
 
 	public void delete(ProdutoVenda produtoVenda) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -118,7 +117,7 @@ public class ProdutoVendaDAO {
 			throw new RuntimeException("Erro ao excluir!", e);
 		} 
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt);
+			ConnectionDataBase.closeConnection(con, stmt);
 		}
 
 	}
@@ -126,7 +125,7 @@ public class ProdutoVendaDAO {
 	// ---------------------------------------  search pesquisar (SELECT + LIKE) --------------------------------------- 
 	public ArrayList<ProdutoVenda> search(ProdutoVenda produtoVenda2){
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		ArrayList<ProdutoVenda> produtoVendas = new ArrayList<>();
@@ -152,7 +151,7 @@ public class ProdutoVendaDAO {
 			throw new RuntimeException("Erro ao ler informações!", e);
 		}
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt, rs);
+			ConnectionDataBase.closeConnection(con, stmt, rs);
 		}
 		return produtoVendas;
 	}

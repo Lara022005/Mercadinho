@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import ConnectionFactory.ConnectionDatabase;
+import ConnectionFactory.ConnectionDataBase;
 import Model.Cliente;
 
 
@@ -18,7 +18,7 @@ public class ClienteDAO {
 	//----------------------------------------------- Criar (Insert)----------------------------------------------
 	public void create(Cliente cliente) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -40,14 +40,14 @@ public class ClienteDAO {
 			throw new RuntimeException("Erro ao cadastrar!", e);
 		} 
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt);
+			ConnectionDataBase.closeConnection(con, stmt);
 		}
 
 	}
 	// ---------------------------------------  read ler (SELECT)	--------------------------------------------------------
 	public ArrayList<Cliente> read(){
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Cliente> clientes = new ArrayList<>();
@@ -77,7 +77,7 @@ public class ClienteDAO {
 			throw new RuntimeException("Erro ao ler informações!", e);
 		}
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt, rs);
+			ConnectionDataBase.closeConnection(con, stmt, rs);
 		}
 		return clientes;
 
@@ -86,7 +86,7 @@ public class ClienteDAO {
 	//---------------------------------------  update atualizar (update)--------------------------------------- 
 	public void update(Cliente cliente) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -110,15 +110,15 @@ public class ClienteDAO {
 			throw new RuntimeException("Erro ao atualizar!", e);
 		} 
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt);
+			ConnectionDataBase.closeConnection(con, stmt);
 		}
 
 	}
 
-	// ---------------------------------------  delete apagar (DELETE) --------------------------------------- 	
+// ---------------------------------------  delete apagar (DELETE) --------------------------------------- 	
 	public void delete(Cliente cliente) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -135,14 +135,14 @@ public class ClienteDAO {
 			throw new RuntimeException("Erro ao excluir!", e);
 		} 
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt);
+			ConnectionDataBase.closeConnection(con, stmt);
 		}
 
 	}
-	// ---------------------------------------  search pesquisar (SELECT + LIKE) --------------------------------------- 
+// ---------------------------------------  search pesquisar (SELECT + LIKE) --------------------------------------- 
 	public ArrayList<Cliente> search(Cliente cliente1){
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Cliente> clientes = new ArrayList<>();
@@ -152,10 +152,11 @@ public class ClienteDAO {
 			stmt.setString(1, "%"+cliente1.getCpf()+"%");
 			stmt.setString(2, "%"+cliente1.getNome()+"%");
 			rs = stmt.executeQuery();
+			int i = 1;
 
 			while(rs.next()) { // so ira funcionar enquanto estiver linha 				
 				Cliente cliente = new Cliente();
-				cliente.setId(rs.getString(1));				
+				cliente.setId("" + i);				
 				cliente.setNome(rs.getString(2));
 				cliente.setCpf(rs.getString(3));
 				cliente.setEmail(rs.getString(4));
@@ -165,6 +166,7 @@ public class ClienteDAO {
 				cliente.setTelefone(rs.getString(8));
 
 				clientes.add(cliente);
+				i++;
 				
 			}
 
@@ -173,13 +175,13 @@ public class ClienteDAO {
 			throw new RuntimeException("Erro ao ler informações!", e);
 		}
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt, rs);
+			ConnectionDataBase.closeConnection(con, stmt, rs);
 		}
 		return clientes;
 	}
 	
 	public ArrayList<String> readClienteByNome() {
-	       Connection con = ConnectionDatabase.getConnection();
+	       Connection con = ConnectionDataBase.getConnection();
 	       PreparedStatement stmt = null;
 	       ResultSet rs = null;
 	       ArrayList<String> clientes = new ArrayList<>();
@@ -196,7 +198,7 @@ public class ClienteDAO {
 	       } catch (SQLException e) {
 	           throw new RuntimeException("Erro ao ler os clientes!", e);
 	       } finally {
-	           ConnectionDatabase.closeConnection(con, stmt, rs);
+	           ConnectionDataBase.closeConnection(con, stmt, rs);
 	       }
 	       return clientes;
 	   }

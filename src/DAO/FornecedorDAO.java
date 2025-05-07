@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import ConnectionFactory.ConnectionDatabase;
+import ConnectionFactory.ConnectionDataBase;
 import Model.Fornecedor;
 
 public class FornecedorDAO {
@@ -14,7 +14,7 @@ public class FornecedorDAO {
 	//----------------------------------------------- Criar (Insert)----------------------------------------------
 	public void create(Fornecedor fornecedor) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -37,7 +37,7 @@ public class FornecedorDAO {
 	// ---------------------------------------  read ler (SELECT)	--------------------------------------------------------
 	public ArrayList<Fornecedor> read(){
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Fornecedor> fornecedores = new ArrayList<>();
@@ -62,7 +62,7 @@ public class FornecedorDAO {
 			throw new RuntimeException("Erro ao ler informações!", e);
 		}
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt, rs);
+			ConnectionDataBase.closeConnection(con, stmt, rs);
 		}
 		return fornecedores;
 
@@ -71,7 +71,7 @@ public class FornecedorDAO {
 	//---------------------------------------  update atualizar (update)--------------------------------------- 
 	public void update(Fornecedor fornecedor) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -93,7 +93,7 @@ public class FornecedorDAO {
 			throw new RuntimeException("Erro ao atualizar!", e);
 		} 
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt);
+			ConnectionDataBase.closeConnection(con, stmt);
 		}
 
 	}
@@ -102,7 +102,7 @@ public class FornecedorDAO {
 
 	public void delete(Fornecedor fornecedor) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -119,7 +119,7 @@ public class FornecedorDAO {
 			throw new RuntimeException("Erro ao excluir!", e);
 		} 
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt);
+			ConnectionDataBase.closeConnection(con, stmt);
 		}
 
 	}
@@ -127,7 +127,7 @@ public class FornecedorDAO {
 	// ---------------------------------------  search pesquisar (SELECT + LIKE) --------------------------------------- 
 	public ArrayList<Fornecedor> search(Fornecedor fornecedor2){
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Fornecedor> fornecedores = new ArrayList<>();
@@ -155,7 +155,7 @@ public class FornecedorDAO {
 			throw new RuntimeException("Erro ao ler informações!", e);
 		}
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt, rs);
+			ConnectionDataBase.closeConnection(con, stmt, rs);
 		}
 		return fornecedores;
 

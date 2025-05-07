@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import ConnectionFactory.ConnectionDatabase;
+import ConnectionFactory.ConnectionDataBase;
 import Model.Funcionario;
 import Util.Alerts;
 import javafx.scene.control.Alert.AlertType;
@@ -17,7 +17,7 @@ public class FuncionarioDAO {
 	//----------------------------------------------- Criar (Insert)----------------------------------------------
 	public void create(Funcionario funcionario) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -44,7 +44,7 @@ public class FuncionarioDAO {
 			throw new RuntimeException("Erro ao cadastrar!", e);
 		} 
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt);
+			ConnectionDataBase.closeConnection(con, stmt);
 		}
 
 	}
@@ -52,7 +52,7 @@ public class FuncionarioDAO {
 	// ---------------------------------------  read ler (SELECT)	------------------------------------------
 	public ArrayList<Funcionario> read(){
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Funcionario> Funcionarios = new ArrayList<>();
@@ -84,7 +84,7 @@ public class FuncionarioDAO {
 			throw new RuntimeException("Erro ao ler informações!", e);
 		}
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt, rs);
+			ConnectionDataBase.closeConnection(con, stmt, rs);
 		}
 		return Funcionarios;
 
@@ -93,7 +93,7 @@ public class FuncionarioDAO {
 	//---------------------------------------  update atualizar (update)--------------------------------------- 
 	public void update(Funcionario funcionario) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -123,7 +123,7 @@ public class FuncionarioDAO {
 			throw new RuntimeException("Erro ao atualizar!", e);
 		} 
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt);
+			ConnectionDataBase.closeConnection(con, stmt);
 		}
 
 	}
@@ -132,7 +132,7 @@ public class FuncionarioDAO {
 
 	public void delete(Funcionario funcionario) {
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
@@ -149,7 +149,7 @@ public class FuncionarioDAO {
 			throw new RuntimeException("Erro ao excluir!", e);
 		} 
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt);
+			ConnectionDataBase.closeConnection(con, stmt);
 		}
 
 	}
@@ -158,7 +158,7 @@ public class FuncionarioDAO {
 
 	public ArrayList<Funcionario>  search(Funcionario funcionario1){
 
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Funcionario> Funcionarios = new ArrayList<>();
@@ -192,14 +192,14 @@ public class FuncionarioDAO {
 			throw new RuntimeException("Erro ao ler informações!", e);
 		}
 		finally {
-			ConnectionDatabase.closeConnection(con, stmt, rs);
+			ConnectionDataBase.closeConnection(con, stmt, rs);
 		}
 		return Funcionarios;
 
 	}
 
 	public Funcionario autenticarUser(String cpf, String senha) {
-		Connection con = ConnectionDatabase.getConnection(); // conectar com banco
+		Connection con = ConnectionDataBase.getConnection(); // conectar com banco
 		PreparedStatement stmt = null; // puxar informação do banco
 		ResultSet rs = null; // tras resultado do banco
 		Funcionario funcionario = new Funcionario();
@@ -230,14 +230,14 @@ public class FuncionarioDAO {
 			Alerts.showAlert("Erro!", "Erro de conexão!", "Falha ao consultar informações no banco de dados.", AlertType.ERROR);
 			throw new RuntimeException("Erro de autenticação", e);
 		} finally{
-			ConnectionDatabase.closeConnection(con, stmt, rs);
+			ConnectionDataBase.closeConnection(con, stmt, rs);
 		}				
 		return funcionario;		
 	}
 	
 	public String getTotalVendido(String id) {
 			
-		Connection con = ConnectionDatabase.getConnection();
+		Connection con = ConnectionDataBase.getConnection();
 		PreparedStatement stmt = null; 
 		ResultSet rs = null; 
 		String TotalVendido = null;
@@ -257,7 +257,7 @@ public class FuncionarioDAO {
 			Alerts.showAlert("Erro!", "Erro de conexão!", "Falha ao consultar informações no banco de dados.", AlertType.ERROR);
 			throw new RuntimeException("Erro!", e);
 		} finally{
-			ConnectionDatabase.closeConnection(con, stmt, rs);
+			ConnectionDataBase.closeConnection(con, stmt, rs);
 		}		
 		
 		return TotalVendido;

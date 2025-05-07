@@ -338,7 +338,7 @@ public class controllerRegistroVenda implements Initializable{
 			produto[i] = nomesProdutos.get(i);
 		} 
 
-		TextFields.bindAutoCompletion(txtProduto, produto); // ------------ refrente ao controlsfx(sugestoes da barra de pesquisa)
+		TextFields.bindAutoCompletion(txtProduto, produto); // ------------ referente ao controlsfx(sugestoes da barra de pesquisa)
 
 
 		ClienteDAO clienteDAO = new ClienteDAO();

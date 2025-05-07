@@ -65,8 +65,7 @@ public class controllerCadastrarCliente implements Initializable {
     	controllerCliente.clienteEditar = null;
     	
     	Stage stage = (Stage) btCancelar.getScene().getWindow();
-    	stage.close();
-    	    	
+    	stage.close();    	    	
     }
 
     @FXML
@@ -97,12 +96,12 @@ public class controllerCadastrarCliente implements Initializable {
     		
     	if(controllerCliente.clienteEditar == null) {
     		clienteDAO.create(cliente);   		
-    		Alerts.showAlert("Sucesso!", "Cliente cadastrado", "Seja bem vindo", AlertType.INFORMATION);
+    		Alerts.showAlert("Sucesso!", "Agendamento cadastrado", "Seja bem vindo", AlertType.INFORMATION);
     		Stage stage = (Stage) btCancelar.getScene().getWindow();
         	stage.close();
     	}else if(controllerCliente.clienteEditar != null) {
     		clienteDAO.update(cliente);   		
-    		Alerts.showAlert("Sucesso!", "Cliente editado", "O cliente foi editado com sucesso", AlertType.INFORMATION);    
+    		Alerts.showAlert("Sucesso!", "Agendamento editado", "O agendamento foi editado com sucesso", AlertType.INFORMATION);    
     		Stage stage = (Stage) btCancelar.getScene().getWindow();
         	stage.close();
     	}
